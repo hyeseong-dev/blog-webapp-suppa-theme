@@ -1,4 +1,3 @@
-import django_heroku
 from pathlib import Path
 import os
 
