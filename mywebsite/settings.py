@@ -1,3 +1,4 @@
+import django_heroku
 from pathlib import Path
 import os
 
@@ -12,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'w&0_%8*a*puy*-3+37i-i7r-mq^e&(@4r1qlyha453z2+0&546'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1']
+ALLOWED_HOSTS = ['hyeseong-blog-suppa.herokuapp.com','0.0.0.0','127.0.0.1']
 
 
 # Application definition
@@ -33,6 +34,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
