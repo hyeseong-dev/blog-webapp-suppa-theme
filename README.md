@@ -8,6 +8,7 @@
 - Uses `venv` - Python packagin tool from Python.org
 - Development,Staging and Production settings with [Django settings](https://docs.djangoproject.com/en/3.1/topics/settings/#calling-django-setup-is-required-for-standalone-django-usage)
 - MySQL8.0 database support with mysqlclinet
+- Gunicorn webserver instead of using uwsgi.much fatster, simpler and easy to us.
 
 ## How to install 
 ```
@@ -45,8 +46,9 @@ INSTALLED_APPS = [
 ...
 ...
 
+STATIC_ROOT = BASE_DIR/'staticfiles'
 STATIC_URL = '/static/'
-
+    
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
@@ -61,10 +63,20 @@ It is possible to deploy to Heroku or to you own server.
 ### Heroku
 - It is not difficult just follow the instruction on the Heroku document website >> [install heroku](https://devcenter.heroku.com/articles/heroku-cli)
 
+#### Procfile
 ```
-$ heroku --version # make sure heroku is installed properly.
-heroku/7.47.3 win32-x64 node-v12.16.2
+web: gunicorn django_project.wsgi
+```
 
-$ heroku login # login in on the browser
 
 ```
+$ heroku --version
+$ heroku login 
+$ git add . 
+$ git commit -m 'Hello World!'
+$ heroku create          # you can find your app name after this.
+$ heroku git:remote -a 'your app name'
+$ git push heroku master 
+
+```
+
